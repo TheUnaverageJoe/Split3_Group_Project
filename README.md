@@ -1,9 +1,9 @@
 # Split3_Group_Project
-Collective 1802
-Lachlan Diaz
-Ruben Calderon
-Joseph Carter
-Joshua Huggins
-Keenan Rea
-Molly Thompson
-Eric Shen
+Collective 1802<br />
+Lachlan Diaz<br />
+Ruben Calderon<br />
+Joseph Carter<br />
+Joshua Huggins<br />
+Keenan Rea<br />
+Molly Thompson<br />
+Eric Shen<br />
