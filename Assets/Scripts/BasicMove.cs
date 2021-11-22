@@ -37,7 +37,6 @@ public class BasicMove : MonoBehaviour
             }
         }
     }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         canJump = true;
