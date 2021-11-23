@@ -5,10 +5,11 @@ using UnityEngine;
 public class BasicMove : MonoBehaviour
 {
     Rigidbody2D rb;
-    int jumpStrength = 10;
-    bool canJump = false;
-    bool canMove = false;
-    int moveSpeed = 5;
+    public int jumpStrength = 10;
+    public bool canJump = false;
+    public int moveSpeed = 5;
+    public int maxSpeed =  10;
+    public int dampen = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -22,24 +23,40 @@ public class BasicMove : MonoBehaviour
         if(Input.GetButtonDown("Jump") && canJump){
             rb.velocity += Vector2.up*jumpStrength;
             canJump = false;
-            canMove = false;
+            //canMove = false;
         }
-
-        if(canMove){
+        if(canJump){
             if(Input.GetAxis("Horizontal") < 0){
+                float yVel = rb.velocity.y;
                 rb.velocity = Vector2.zero;
-                rb.velocity += Vector2.left*moveSpeed;
+                rb.velocity += new Vector2(-1*moveSpeed, yVel);
             }else if(Input.GetAxis("Horizontal") > 0){
+                float yVel = rb.velocity.y;
                 rb.velocity = Vector2.zero;
-                rb.velocity += Vector2.right*moveSpeed;
+                rb.velocity += new Vector2(1*moveSpeed, yVel);
             }else{
-                rb.velocity = new Vector2(0, rb.velocity.y);
+                float yVel = rb.velocity.y;
+                rb.velocity = new Vector2(0, yVel);
             }
+        }else{
+            if(Input.GetAxis("Horizontal") < 0){
+                rb.AddForce(Vector2.left/dampen);
+            }
+            if(Input.GetAxis("Horizontal") > 0){
+                rb.AddForce(Vector2.right/dampen);
+            }
+            if(rb.velocity.x > maxSpeed){
+                rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
+            }
+            if(rb.velocity.x < -maxSpeed){
+                rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
+            }
+            
+            
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         canJump = true;
-        canMove = true;
     }
 }
