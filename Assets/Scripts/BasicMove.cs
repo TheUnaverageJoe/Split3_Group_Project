@@ -51,8 +51,6 @@ public class BasicMove : MonoBehaviour
             if(rb.velocity.x < -maxSpeed){
                 rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
             }
-            
-            
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
