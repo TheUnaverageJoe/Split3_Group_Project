@@ -10,13 +10,14 @@ public class BasicMove : MonoBehaviour
     public bool canJump = false;
     public int moveSpeed = 5;
     public int maxSpeed = 10;
-    public float dampen = 0.5f;
+    public float dampen = 1000.0f;
 
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        dampen = 1000.0f;
     }
 
     // Update is called once per frame
@@ -42,10 +43,10 @@ public class BasicMove : MonoBehaviour
             }
         }else{
             if(Input.GetAxis("Horizontal") < 0){
-                rb.AddForce(Vector2.left/dampen);
+                rb.AddForce(Vector2.left * Time.deltaTime * dampen);
             }
             if(Input.GetAxis("Horizontal") > 0){
-                rb.AddForce(Vector2.right/dampen);
+                rb.AddForce(Vector2.right * Time.deltaTime * dampen);
             }
             if(rb.velocity.x > maxSpeed){
                 rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
