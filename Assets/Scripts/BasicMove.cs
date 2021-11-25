@@ -10,11 +10,7 @@ public class BasicMove : MonoBehaviour
     public bool canJump = false;
     public int moveSpeed = 5;
     public int maxSpeed = 10;
-<<<<<<< Updated upstream
-    public float dampen = 1.0f;
-=======
     public float dampen = 0.5f;
->>>>>>> Stashed changes
 
 
     // Start is called before the first frame update
