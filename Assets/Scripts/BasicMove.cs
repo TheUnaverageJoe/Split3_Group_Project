@@ -17,7 +17,6 @@ public class BasicMove : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.drag = 1;
     }
 
     // Update is called once per frame
@@ -60,6 +59,11 @@ public class BasicMove : MonoBehaviour
     {
         canJump = true;
     }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        canJump = true;
+    }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         canJump = false;
