@@ -27,7 +27,6 @@ public class BasicMove : MonoBehaviour
         if(Input.GetButtonDown("Jump") && canJump){
             rb.velocity += Vector2.up*jumpStrength;
             canJump = false;
-            //canMove = false;
         }
         if(canJump){
             if(Input.GetAxis("Horizontal") < 0){
@@ -54,7 +53,6 @@ public class BasicMove : MonoBehaviour
             }
             if(rb.velocity.x < -maxSpeed){
                 rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
-
             }
         }
     }
