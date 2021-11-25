@@ -6,11 +6,12 @@ using UnityEngine;
 public class BasicMove : MonoBehaviour
 {
     Rigidbody2D rb;
-    public int jumpStrength = 20;
+    public int jumpStrength = 10;
     public bool canJump = false;
     public int moveSpeed = 5;
-    public int gravity = 5;
-    public int maxspeed = 10;
+    public int maxSpeed =  10;
+    public int dampen = 2;
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,13 +26,34 @@ public class BasicMove : MonoBehaviour
         if(Input.GetButtonDown("Jump") && canJump){
             rb.velocity += Vector2.up*jumpStrength;
             canJump = false;
+            //canMove = false;
         }
+        if(canJump){
+            if(Input.GetAxis("Horizontal") < 0){
+                float yVel = rb.velocity.y;
+                rb.velocity = Vector2.zero;
+                rb.velocity += new Vector2(-1*moveSpeed, yVel);
+            }else if(Input.GetAxis("Horizontal") > 0){
+                float yVel = rb.velocity.y;
+                rb.velocity = Vector2.zero;
+                rb.velocity += new Vector2(1*moveSpeed, yVel);
+            }else{
+                float yVel = rb.velocity.y;
+                rb.velocity = new Vector2(0, yVel);
+            }
+        }else{
+            if(Input.GetAxis("Horizontal") < 0){
+                rb.AddForce(Vector2.left/dampen);
+            }
+            if(Input.GetAxis("Horizontal") > 0){
+                rb.AddForce(Vector2.right/dampen);
+            }
+            if(rb.velocity.x > maxSpeed){
+                rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
+            }
+            if(rb.velocity.x < -maxSpeed){
+                rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
 
-        if(Input.GetAxis("Horizontal") < 0){
-            //rb.velocity += Vector2.down*gravity;
-            rb.velocity += Vector2.left*moveSpeed;
-            if(Math.Abs(rb.velocity.x) > maxspeed){
-                rb.velocity = new Vector2(-maxspeed,rb.velocity.y);
             }
         }else if(Input.GetAxis("Horizontal") > 0){
             //rb.velocity += Vector2.down*gravity;
