@@ -9,7 +9,7 @@ public class BasicMove : MonoBehaviour
     public int jumpStrength = 10;
     public bool canJump = false;
     public int moveSpeed = 5;
-    public int maxSpeed =  10;
+    public int maxSpeed = 10;
     public int dampen = 2;
 
 
@@ -17,7 +17,7 @@ public class BasicMove : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.drag = 5;
+        rb.drag = 1;
     }
 
     // Update is called once per frame
@@ -26,7 +26,6 @@ public class BasicMove : MonoBehaviour
         if(Input.GetButtonDown("Jump") && canJump){
             rb.velocity += Vector2.up*jumpStrength;
             canJump = false;
-            //canMove = false;
         }
         if(canJump){
             if(Input.GetAxis("Horizontal") < 0){
@@ -53,18 +52,7 @@ public class BasicMove : MonoBehaviour
             }
             if(rb.velocity.x < -maxSpeed){
                 rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
-
             }
-        }else if(Input.GetAxis("Horizontal") > 0){
-            //rb.velocity += Vector2.down*gravity;
-            rb.velocity += Vector2.right*moveSpeed;
-            if(Math.Abs(rb.velocity.x) > maxspeed){
-                rb.velocity = new Vector2(maxspeed,rb.velocity.y);
-            }
-        }
-
-        if(rb.velocity.y < -maxspeed){
-            rb.velocity = new Vector2(rb.velocity.x,-maxspeed);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
