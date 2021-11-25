@@ -59,4 +59,8 @@ public class BasicMove : MonoBehaviour
     {
         canJump = true;
     }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        canJump = false;
+    }
 }
