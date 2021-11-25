@@ -273,11 +273,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 731681811}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f61fd0973da29f7429f0dcb2000e27e0, type: 3}
+  m_Script: {fileID: 11500000, guid: 2015f4367bcb9bf4c97b1d0c803d1343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vertexCount: 500
-  lineWidth: 1
+  vertexCount: 40
+  lineWidth: 0.2
   radius: 1
 --- !u!120 &731681818
 LineRenderer:
