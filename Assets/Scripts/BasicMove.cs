@@ -10,7 +10,7 @@ public class BasicMove : MonoBehaviour
     public bool canJump = false;
     public int moveSpeed = 5;
     public int maxSpeed = 10;
-    public int dampen = 2;
+    public float dampen = 1.0f;
 
 
     // Start is called before the first frame update
@@ -61,5 +61,9 @@ public class BasicMove : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         canJump = true;
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        canJump = false;
     }
 }
