@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Victory!");
     }
-    private void OnTriggerStay(Collider other)
-    {
-        Debug.Log("Victory!");
-    }
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         Debug.Log("Exited");
     }
