@@ -24,14 +24,15 @@ public class Teleport : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         var cursor_no_pos = cursor_no.gameObject.GetComponent<Transform>();
         var cursor_ok_pos = cursor_ok.gameObject.GetComponent<Transform>();
 
-        Vector3 playerPos = this.gameObject.GetComponent<Transform>().position;
-        float diff = Vector3.Distance(playerPos, mousePos)-10;
+        Vector2 playerPos = this.gameObject.GetComponent<Transform>().position;
+        float diff = Vector2.Distance(playerPos, mousePos);
 
-        //Debug.Log(diff);
+        Debug.Log(mousePos);
+        Debug.Log(diff);
 
         if (diff <= teleportRadius)
         {
@@ -61,7 +62,7 @@ public class Teleport : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && can_teleport && timer > teleportDelay)
         {
             Transform player = this.gameObject.GetComponent<Transform>();
-            player.position = mousePos + new Vector3(0, 0, 1);
+            player.position = mousePos + new Vector2(0, 0);
             timer = 0;
         }
 
