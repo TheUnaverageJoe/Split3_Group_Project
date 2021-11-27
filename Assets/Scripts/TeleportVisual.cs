@@ -7,7 +7,7 @@ public class TeleportVisual : MonoBehaviour
 {
     public int vertexCount = 100; // 4 vertices == square
     public float lineWidth = 0.2f;
-    public float radius = 5;
+    public float radius = 5f;
 
     public GameObject player;
 
