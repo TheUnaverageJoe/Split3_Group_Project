@@ -11,7 +11,7 @@ public class PauseMenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        paused = PauseMenu.active;
+        paused = PauseMenu.activeSelf;
         Time.timeScale = paused ? 0f : 1f;
     }
 
@@ -31,7 +31,7 @@ public class PauseMenuManager : MonoBehaviour
 
     public void togglePause()
     {
-        PauseMenu.SetActive(!PauseMenu.active);
+        PauseMenu.SetActive(!PauseMenu.activeSelf);
         paused = !paused;
         Time.timeScale =  paused ? 0f : 1f;
     }

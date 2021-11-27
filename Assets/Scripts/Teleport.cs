@@ -16,7 +16,6 @@ public class Teleport : MonoBehaviour
     void Start()
     {
         Cursor.visible = false;
-
     }
 
     // Update is called once per frame
@@ -27,11 +26,11 @@ public class Teleport : MonoBehaviour
         var cursor_ok_pos = cursor_ok.gameObject.GetComponent<Transform>();
 
         Vector3 playerPos = this.gameObject.GetComponent<Transform>().position;
-        float diff = Vector3.Distance(playerPos, mousePos) - 10;
+        float diff = Vector3.Distance(playerPos, mousePos)-10;
 
         //Debug.Log(diff);
 
-        if (diff < teleportRadius)
+        if (diff <= teleportRadius)
         {
             cursor_ok.SetActive(true);
             cursor_no.SetActive(false);
