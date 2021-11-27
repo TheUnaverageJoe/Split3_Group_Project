@@ -31,8 +31,8 @@ public class Teleport : MonoBehaviour
         Vector2 playerPos = this.gameObject.GetComponent<Transform>().position;
         float diff = Vector2.Distance(playerPos, mousePos);
 
-        Debug.Log(mousePos);
-        Debug.Log(diff);
+        //Debug.Log(mousePos);
+        //Debug.Log(diff);
 
         if (diff <= teleportRadius)
         {
