@@ -8,6 +8,7 @@ public class TeleportVisual : MonoBehaviour
     public int vertexCount = 100; // 4 vertices == square
     public float lineWidth = 0.2f;
     public float radius = 5f;
+    public int tutorialDistance = 40;
     public GameObject player;
 
     private LineRenderer lineRenderer;
@@ -36,12 +37,14 @@ public class TeleportVisual : MonoBehaviour
     void Update(){
         timer += Time.deltaTime;
         var pos = player.gameObject.transform.position;
-        if(Input.GetAxis("Mouse X") != 0){
+        if(Input.GetAxis("Mouse X") != 0 && pos.x < tutorialDistance){
             timer = 0;
             lineRenderer.widthMultiplier = lineWidth;
         } else {
             lineRenderer.widthMultiplier = lineWidth - timer / 10;
         }
-        SetupCircle(pos.x,pos.y);
+        if(pos.x < tutorialDistance){
+            SetupCircle(pos.x,pos.y);
+        }
     }
 }
