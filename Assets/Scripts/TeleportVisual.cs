@@ -8,10 +8,10 @@ public class TeleportVisual : MonoBehaviour
     public int vertexCount = 100; // 4 vertices == square
     public float lineWidth = 0.2f;
     public float radius = 5f;
-
     public GameObject player;
 
     private LineRenderer lineRenderer;
+    private float timer = 0;
 
     private void Awake()
     {
@@ -21,8 +21,6 @@ public class TeleportVisual : MonoBehaviour
 
     private void SetupCircle(float x, float y)
     {
-        lineRenderer.widthMultiplier = lineWidth;
-
         float deltaTheta = (2f * Mathf.PI) / vertexCount;
         float theta = 0f;
 
@@ -36,7 +34,14 @@ public class TeleportVisual : MonoBehaviour
     }
 
     void Update(){
+        timer += Time.deltaTime;
         var pos = player.gameObject.transform.position;
+        if(Input.GetAxis("Mouse X") != 0){
+            timer = 0;
+            lineRenderer.widthMultiplier = lineWidth;
+        } else {
+            lineRenderer.widthMultiplier = lineWidth - timer / 10;
+        }
         SetupCircle(pos.x,pos.y);
     }
 }
