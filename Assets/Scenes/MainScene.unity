@@ -1957,7 +1957,7 @@ Transform:
   m_GameObject: {fileID: 1193544420}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10, y: -10, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -2039,7 +2039,7 @@ Transform:
   m_GameObject: {fileID: 1591740117}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10, y: -10, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -2184,7 +2184,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vertexCount: 100
   lineWidth: 0.2
-  radius: 5
   tutorialDistance: 40
   player: {fileID: 1822776461}
 --- !u!120 &1822776463

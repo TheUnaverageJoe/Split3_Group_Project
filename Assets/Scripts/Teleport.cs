@@ -29,9 +29,11 @@ public class Teleport : MonoBehaviour
         var cursor_ok_pos = cursor_ok.gameObject.GetComponent<Transform>();
 
         Vector3 playerPos = this.gameObject.GetComponent<Transform>().position;
-        float diff = Vector3.Distance(playerPos, mousePos)-10;
+        float diff = Vector2.Distance(playerPos,mousePos);
 
-        //Debug.Log(diff);
+        Debug.Log(playerPos);
+        Debug.Log(mousePos);
+        Debug.Log(diff);
 
         if (diff <= teleportRadius)
         {
