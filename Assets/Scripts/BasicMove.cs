@@ -52,13 +52,13 @@ public class BasicMove : MonoBehaviour
         {
             if (Input.GetAxis("Horizontal") < 0)
             {
-                // rb.AddForce(Vector2.left / dampen);
-                rb.AddForce(Vector2.left * Time.deltaTime * dampen);
+                rb.AddForce(Vector2.left / dampen);
+                //rb.AddForce(Vector2.left * dampen);
             }
             if (Input.GetAxis("Horizontal") > 0)
             {
-                // rb.AddForce(Vector2.right / dampen);
-                rb.AddForce(Vector2.right * Time.deltaTime * dampen);
+                rb.AddForce(Vector2.right / dampen);
+                //rb.AddForce(Vector2.right * dampen);
             }
             if (rb.velocity.x > maxSpeed)
             {
