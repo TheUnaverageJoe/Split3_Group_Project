@@ -10,47 +10,62 @@ public class BasicMove : MonoBehaviour
     public bool canJump = false;
     public int moveSpeed = 5;
     public int maxSpeed = 10;
-    public int dampen = 2;
+    public float dampen = 0.5f;
 
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.drag = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Jump") && canJump){
-            rb.velocity += Vector2.up*jumpStrength;
+
+        if (Input.GetButtonDown("Jump") && canJump)
+        {
+            rb.velocity += Vector2.up * jumpStrength;
             canJump = false;
         }
-        if(canJump){
-            if(Input.GetAxis("Horizontal") < 0){
+        if (canJump)
+        {
+            if (Input.GetAxis("Horizontal") < 0)
+            {
                 float yVel = rb.velocity.y;
                 rb.velocity = Vector2.zero;
-                rb.velocity += new Vector2(-1*moveSpeed, yVel);
-            }else if(Input.GetAxis("Horizontal") > 0){
+                rb.velocity += new Vector2(-1 * moveSpeed, yVel);
+            }
+            else if (Input.GetAxis("Horizontal") > 0)
+            {
                 float yVel = rb.velocity.y;
                 rb.velocity = Vector2.zero;
-                rb.velocity += new Vector2(1*moveSpeed, yVel);
-            }else{
+                rb.velocity += new Vector2(1 * moveSpeed, yVel);
+            }
+            else
+            {
                 float yVel = rb.velocity.y;
                 rb.velocity = new Vector2(0, yVel);
             }
-        }else{
-            if(Input.GetAxis("Horizontal") < 0){
-                rb.AddForce(Vector2.left/dampen);
+        }
+        else
+        {
+            if (Input.GetAxis("Horizontal") < 0)
+            {
+                rb.AddForce(Vector2.left / dampen);
+                //rb.AddForce(Vector2.left * dampen);
             }
-            if(Input.GetAxis("Horizontal") > 0){
-                rb.AddForce(Vector2.right/dampen);
+            if (Input.GetAxis("Horizontal") > 0)
+            {
+                rb.AddForce(Vector2.right / dampen);
+                //rb.AddForce(Vector2.right * dampen);
             }
-            if(rb.velocity.x > maxSpeed){
+            if (rb.velocity.x > maxSpeed)
+            {
                 rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
             }
-            if(rb.velocity.x < -maxSpeed){
+            if (rb.velocity.x < -maxSpeed)
+            {
                 rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
             }
         }
@@ -59,6 +74,11 @@ public class BasicMove : MonoBehaviour
     {
         canJump = true;
     }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        canJump = true;
+    }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         canJump = false;
