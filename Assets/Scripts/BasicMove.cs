@@ -40,7 +40,7 @@ public class BasicMove : MonoBehaviour
         if (Input.GetButtonDown("Jump") && canJump)
         {
             rb.velocity += Vector2.up * jumpStrength;
-            Debug.Log("onGround: "+onGround);
+            //Debug.Log("onGround: "+onGround);
         }
         if (canJump)
         {
@@ -64,27 +64,27 @@ public class BasicMove : MonoBehaviour
                 rb.velocity = new Vector2(0, yVel);
             }
         }
-        else
+        
+    }
+    void FixedUpdate(){
+        if(!canJump)
         {
-            if (Input.GetAxis("Horizontal") < 0)
-            {
-                thisSprite.flipX = true;
-                rb.AddForce(Vector2.left / dampen);
-                //rb.AddForce(Vector2.left * dampen);
+            //Debug.Log(rb.velocity.x+Vector2.left.x > -maxSpeed);
+            if(rb.velocity.x+Vector2.left.x > -maxSpeed){
+                if (Input.GetAxis("Horizontal") < 0)
+                {
+                    thisSprite.flipX = true;
+                    rb.AddForce(Vector2.left / dampen);
+                    //rb.AddForce(Vector2.left * dampen);
+                }
             }
-            if (Input.GetAxis("Horizontal") > 0)
-            {
-                thisSprite.flipX = false;
-                rb.AddForce(Vector2.right / dampen);
-                //rb.AddForce(Vector2.right * dampen);
-            }
-            if (rb.velocity.x > maxSpeed)
-            {
-                rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
-            }
-            if (rb.velocity.x < -maxSpeed)
-            {
-                rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
+            if(rb.velocity.x+Vector2.right.x < maxSpeed){
+                if (Input.GetAxis("Horizontal") > 0)
+                {
+                    thisSprite.flipX = false;
+                    rb.AddForce(Vector2.right / dampen);
+                    //rb.AddForce(Vector2.right * dampen);
+                }
             }
         }
     }

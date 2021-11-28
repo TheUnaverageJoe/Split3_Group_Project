@@ -1035,8 +1035,8 @@ MonoBehaviour:
   jumpStrength: 10
   canJump: 0
   moveSpeed: 5
-  maxSpeed: 10
-  dampen: 1
+  maxSpeed: 7
+  dampen: 0.05
   onGround: 0
   bottomOffset: {x: 0, y: -0.5}
 --- !u!95 &1126302472
