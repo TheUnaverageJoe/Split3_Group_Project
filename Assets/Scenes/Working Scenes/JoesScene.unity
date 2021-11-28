@@ -2514,7 +2514,7 @@ GameObject:
   - component: {fileID: 984123942}
   - component: {fileID: 984123941}
   - component: {fileID: 984123940}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2662,6 +2662,7 @@ MonoBehaviour:
   teleportDelay: 1
   cursor_ok: {fileID: 1327128293}
   cursor_no: {fileID: 1168133286}
+  timer: 0
 --- !u!114 &984123944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2678,7 +2679,9 @@ MonoBehaviour:
   canJump: 0
   moveSpeed: 5
   maxSpeed: 10
-  dampen: 2
+  dampen: 1
+  onGround: 0
+  bottomOffset: {x: 0, y: -0.5}
 --- !u!95 &984123945
 Animator:
   serializedVersion: 3

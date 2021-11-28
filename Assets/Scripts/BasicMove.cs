@@ -11,22 +11,36 @@ public class BasicMove : MonoBehaviour
     public int moveSpeed = 5;
     public int maxSpeed = 10;
     public float dampen = 0.5f;
+    private SpriteRenderer thisSprite;
+    public bool onGround;
+    public Vector2 bottomOffset;
+    // public float jumpDelay = 0;
+    // private float timer;
 
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        thisSprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //manage if player can jump
+        onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, 0.4f);
+        if(onGround && Math.Abs(rb.velocity.y) < 0.05f){
+            canJump=true;
+        }else{
+            canJump=false;
+        }
+        
 
         if (Input.GetButtonDown("Jump") && canJump)
         {
             rb.velocity += Vector2.up * jumpStrength;
-            canJump = false;
+            Debug.Log("onGround: "+onGround);
         }
         if (canJump)
         {
@@ -35,12 +49,14 @@ public class BasicMove : MonoBehaviour
                 float yVel = rb.velocity.y;
                 rb.velocity = Vector2.zero;
                 rb.velocity += new Vector2(-1 * moveSpeed, yVel);
+                thisSprite.flipX = true;
             }
             else if (Input.GetAxis("Horizontal") > 0)
             {
                 float yVel = rb.velocity.y;
                 rb.velocity = Vector2.zero;
                 rb.velocity += new Vector2(1 * moveSpeed, yVel);
+                thisSprite.flipX = false;
             }
             else
             {
@@ -52,11 +68,13 @@ public class BasicMove : MonoBehaviour
         {
             if (Input.GetAxis("Horizontal") < 0)
             {
+                thisSprite.flipX = true;
                 rb.AddForce(Vector2.left / dampen);
                 //rb.AddForce(Vector2.left * dampen);
             }
             if (Input.GetAxis("Horizontal") > 0)
             {
+                thisSprite.flipX = false;
                 rb.AddForce(Vector2.right / dampen);
                 //rb.AddForce(Vector2.right * dampen);
             }
@@ -70,17 +88,12 @@ public class BasicMove : MonoBehaviour
             }
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnDrawGizmos()
     {
-        canJump = true;
-    }
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        canJump = true;
-    }
+        Gizmos.color = Color.red;
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        canJump = false;
+        var positions = new Vector2[] { bottomOffset };
+
+        Gizmos.DrawWireSphere((Vector2)transform.position + bottomOffset, 0.4f);
     }
 }
