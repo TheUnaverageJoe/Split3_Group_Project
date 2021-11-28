@@ -8,14 +8,14 @@ public class TeleportVisual : MonoBehaviour
     public int vertexCount = 100; // 4 vertices == square
     public float lineWidth = 0.2f;
     private float radius = 5f;
-    public int tutorialDistance = 40;
-    public GameObject player;
-
+    public int tutorialDistance = 1000;
+    private GameObject player;
     private LineRenderer lineRenderer;
     private float timer = 0;
 
     private void Awake()
     {
+        player = this.gameObject;
         lineRenderer = GetComponent<LineRenderer>();
         radius = player.GetComponent<Teleport>().teleportRadius;
     }
@@ -36,7 +36,7 @@ public class TeleportVisual : MonoBehaviour
 
     void Update(){
         timer += Time.deltaTime;
-        var pos = player.gameObject.transform.position;
+        var pos = player.GetComponent<Transform>().position;
         if(Input.GetAxis("Mouse X") != 0 && pos.x < tutorialDistance){
             timer = 0;
             lineRenderer.widthMultiplier = lineWidth;
