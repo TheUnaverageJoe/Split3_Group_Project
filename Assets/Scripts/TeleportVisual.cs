@@ -8,16 +8,18 @@ public class TeleportVisual : MonoBehaviour
     public int vertexCount = 100; // 4 vertices == square
     public float lineWidth = 0.2f;
     private float radius = 5f;
+    private float timer = 0;
+    private float teleportDelay = 0;
     public int tutorialDistance = 1000;
     private GameObject player;
     private LineRenderer lineRenderer;
-    private float timer = 0;
 
     private void Awake()
     {
         player = this.gameObject;
         lineRenderer = GetComponent<LineRenderer>();
         radius = player.GetComponent<Teleport>().teleportRadius;
+        teleportDelay = player.GetComponent<Teleport>().teleportDelay;
     }
 
     private void SetupCircle(float x, float y)
@@ -35,13 +37,12 @@ public class TeleportVisual : MonoBehaviour
     }
 
     void Update(){
-        timer += Time.deltaTime;
+        timer = player.GetComponent<Teleport>().timer;
         var pos = player.GetComponent<Transform>().position;
-        if(Input.GetAxis("Mouse X") != 0 && pos.x < tutorialDistance){
-            timer = 0;
+        if(timer >= teleportDelay && pos.x < tutorialDistance){
             lineRenderer.widthMultiplier = lineWidth;
         } else {
-            lineRenderer.widthMultiplier = lineWidth - timer / 10;
+            lineRenderer.widthMultiplier = 0;
         }
         if(pos.x < tutorialDistance){
             SetupCircle(pos.x,pos.y);

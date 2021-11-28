@@ -10,7 +10,7 @@ public class Teleport : MonoBehaviour
     public GameObject cursor_ok;
     public GameObject cursor_no;
     private bool can_teleport = true;
-    private float timer = 0;
+    public float timer = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -59,7 +59,7 @@ public class Teleport : MonoBehaviour
         //Debug.Log(cursor.position.x);
         //Debug.Log(cursor.position.y);
 
-        if (Input.GetMouseButtonDown(0) && can_teleport && timer > teleportDelay)
+        if (Input.GetMouseButtonDown(0) && can_teleport && timer >= teleportDelay)
         {
             Transform player = this.gameObject.GetComponent<Transform>();
             player.position = mousePos + new Vector2(0, 0);
