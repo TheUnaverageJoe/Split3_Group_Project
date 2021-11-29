@@ -12,6 +12,7 @@ public class BasicMove : MonoBehaviour
     public int maxSpeed = 10;
     public float dampen = 0.5f;
     private SpriteRenderer thisSprite;
+    private AudioSource jumpAudio; 
     public bool onGround;
     public Vector2 bottomOffset;
     // public float jumpDelay = 0;
@@ -23,6 +24,7 @@ public class BasicMove : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         thisSprite = GetComponent<SpriteRenderer>();
+        jumpAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -40,6 +42,7 @@ public class BasicMove : MonoBehaviour
         if (Input.GetButtonDown("Jump") && canJump)
         {
             rb.velocity += Vector2.up * jumpStrength;
+            jumpAudio.Play();
             //Debug.Log("onGround: "+onGround);
         }
         if (canJump)
