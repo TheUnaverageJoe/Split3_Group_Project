@@ -21,4 +21,9 @@ public class MenuManager : MonoBehaviour
         Debug.Log("quitting game");
         Application.Quit();
     }
+
+    public void returnToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
