@@ -3450,7 +3450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportRadius: 10
-  teleportDelay: 4
+  teleportDelay: 2
   cursor_ok: {fileID: 326370689}
   cursor_no: {fileID: 1858119920}
   timer: 0
