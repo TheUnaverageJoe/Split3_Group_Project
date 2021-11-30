@@ -15,9 +15,6 @@ public class BasicMove : MonoBehaviour
     private AudioSource jumpAudio; 
     public bool onGround;
     public Vector2 bottomOffset;
-    // public float jumpDelay = 0;
-    // private float timer;
-
 
     // Start is called before the first frame update
     void Start()

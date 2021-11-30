@@ -11,6 +11,7 @@ public class Teleport : MonoBehaviour
     public GameObject cursor_no;
     private bool can_teleport = true;
     public float timer = 0;
+    public bool paused = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,10 @@ public class Teleport : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(paused){
+            return;
+        }
+        
         timer += Time.deltaTime;
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenuManager : MonoBehaviour
 {
     public GameObject PauseMenu;
+    public GameObject Player;
     public bool paused = false;
 
     // Start is called before the first frame update
@@ -31,8 +32,14 @@ public class PauseMenuManager : MonoBehaviour
 
     public void togglePause()
     {
+        Player.GetComponent<Teleport>().paused = !Player.GetComponent<Teleport>().paused;
         PauseMenu.SetActive(!PauseMenu.activeSelf);
         paused = !paused;
         Time.timeScale =  paused ? 0f : 1f;
+    }
+
+    public void hideCursor()
+    {
+        Cursor.visible = false;
     }
 }
