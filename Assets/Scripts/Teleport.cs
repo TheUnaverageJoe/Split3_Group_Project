@@ -21,6 +21,7 @@ public class Teleport : MonoBehaviour
     {
         Cursor.visible = false;
         timer = teleportDelay;
+        teleAudio = GameObject.Find("teleAudio");
         teleportAudio = teleAudio.gameObject.GetComponent<AudioSource>();
     }
 
