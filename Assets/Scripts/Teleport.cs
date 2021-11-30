@@ -10,7 +10,9 @@ public class Teleport : MonoBehaviour
     public GameObject cursor_ok;
     public GameObject cursor_no;
     public GameObject cursor_check;
+    public GameObject teleAudio;
     private bool can_teleport = true;
+    private AudioSource teleportAudio;
     public float timer = 0;
     public bool paused = false;
 
@@ -19,6 +21,7 @@ public class Teleport : MonoBehaviour
     {
         Cursor.visible = false;
         timer = teleportDelay;
+        teleportAudio = teleAudio.gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -71,6 +74,7 @@ public class Teleport : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && can_teleport && timer >= teleportDelay)
         {
+            teleportAudio.Play();
             Transform player = this.gameObject.GetComponent<Transform>();
             player.position = mousePos + new Vector2(0, 0);
             timer = 0;
